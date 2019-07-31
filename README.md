@@ -11,6 +11,66 @@
 npm install ducker-model
 ```
 
+## Usage
+
+```js
+// 1.初始一个model实例，传入数据结构属性定义
+let userModel = new Model({
+  id: {
+    type: Number,
+    property: "uuid",
+    value: 0
+  },
+  name: {
+    type: String,
+    property: "buyer.shopinfo.nickname",
+    value: ""
+  },
+  items: {
+    type: String,
+    property: "items"
+  },
+  age: {
+    type: Number,
+    property: "age"
+  },
+  lastLoginTime: {
+    type: Date,
+    property: "lastLoginTime"
+  },
+  price: {
+    type: Number,
+    unit: "B",
+    property: "price"
+  }
+});
+
+// 2.实例调用parse()方法解析数据
+let userState = userModel.parse({
+  uuid: 123,
+  buyer: {
+    shopinfo: {
+      nickname: "张三"
+    }
+  },
+  price: 1000,
+  lastLoginTime: "1563897600000"
+});
+// userState--> {"id":123,"name":"张三","items":"","age":0,"lastLoginTime":"2019-07-24","price":10}
+
+// --------或者----------
+
+// 3.实例调用traverse()方法反向映射数据
+let userParams = userModel.traverse({
+  id: 234,
+  name: "李四",
+  age: null,
+  lastLoginTime: "2019-07-24",
+  price: 24
+});
+// userParams--> {"uuid":234,"buyer":{"shopinfo":{"nickname":"李四"}},"lastLoginTime":1563897600000,"price":2400}
+```
+
 ## Author
 
 👤 **skinner**

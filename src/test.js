@@ -49,4 +49,4 @@ let userParams = userModel.traverse({
   price: 24
 });
 
-console.log(JSON.stringify(userParams));
+console.log(JSON.stringify(userState)); //{"uuid":234,"buyer":{"shopinfo":{"nickname":"李四"}},"lastLoginTime":1563897600000,"price":2400}
