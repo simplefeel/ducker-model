@@ -7,9 +7,6 @@
 
 ## Install
 [![NPM](https://nodei.co/npm/ducker-model.png)](https://nodei.co/npm/ducker-model/)
-```sh
-npm install ducker-model
-```
 
 ## Usage
 
