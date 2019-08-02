@@ -6,7 +6,7 @@
 > Data converter, decoupling front and rear development, improving development efficiency 数据转换器，解耦前后端开发，提升开发效率
 
 ## Install
-
+[![NPM](https://nodei.co/npm/ducker-model.png)](https://nodei.co/npm/ducker-model/)
 ```sh
 npm install ducker-model
 ```
