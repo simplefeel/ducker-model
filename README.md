@@ -7,7 +7,7 @@
 > Data converter, decoupling front and rear development, improving development efficiency 数据转换器，解耦前后端开发，提升开发效率
 
 ## Motivation
-❓why we need ducker-model ? see the [article](https://mp.weixin.qq.com/s/q6xybux0fhrUz5HE5TY0aA) 
+✅ why we need ducker-model ? see the [article](https://mp.weixin.qq.com/s/q6xybux0fhrUz5HE5TY0aA) 
 
 ## Install
 [![NPM](https://nodei.co/npm/ducker-model.png)](https://nodei.co/npm/ducker-model/)
