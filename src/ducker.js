@@ -41,13 +41,15 @@ class Model {
     _mapValues(this._attributes, (attribute, key) => {
       let path = attribute.property,
         type = new attribute.type(),
+        format = attribute.format,
         unit = attribute.unit;
       let distValue = _get(data, path);
       if (distValue) {
         distValue = this.compose(
           distValue,
           type,
-          unit
+          unit,
+          format
         );
       }
       let value =
@@ -67,6 +69,7 @@ class Model {
       let path = attribute.property,
         unit = attribute.unit,
         type = new attribute.type(),
+        format = attribute.format,
         sourceValue = data[key];
       if (sourceValue) {
         let value = this.discompose(sourceValue, unit, key, type);
@@ -81,12 +84,12 @@ class Model {
    * @param {*} type 类型，比如String,Number
    * @param {*} unit 单位，比如价格
    */
-  compose(distValue, type, unit) {
+  compose(distValue, type, unit, format = "l") {
     if (unit) {
       distValue = distValue / PRICE[unit];
     }
     if (_isDate(type)) {
-      distValue = _manba(parseFloat(distValue)).format("l");
+      distValue = _manba(parseFloat(distValue)).format(format);
     }
     return distValue;
   }

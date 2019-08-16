@@ -11,22 +11,25 @@ let userModel = new Model({
     property: "buyer.shopinfo.nickname",
     value: ""
   },
-  items: {
-    type: String,
-    property: "items"
-  },
-  age: {
-    type: Number,
-    property: "age"
-  },
   lastLoginTime: {
     type: Date,
-    property: "lastLoginTime"
+    property: "lastLoginTime",
+    format: "kk"
   },
   price: {
     type: Number,
     unit: "B",
     property: "price"
+  },
+  items: {
+    type: Array,
+    property: "shopInfo.familiarItems"
+  },
+  flag: {
+    type: String,
+    value: false,
+    property: ["path-1", "path-2"],
+    computed: function() {}
   }
 });
 
@@ -38,7 +41,47 @@ let userState = userModel.parse({
     }
   },
   price: 1000,
-  lastLoginTime: "1563897600000"
+  lastLoginTime: "1563897600000",
+  shopInfo: {
+    familiarItems: [
+      {
+        itemId: 883487093,
+        itemName: "精致的星空耳环",
+        itemMainPic:
+          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
+        itemPrice: 17900,
+        itemOriginalPrice: 22500,
+        recommendReason: "48%的回头客都在买"
+      },
+      {
+        itemId: 883487093,
+        itemName: "精致的星空耳环",
+        itemMainPic:
+          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
+        itemPrice: 17900,
+        itemOriginalPrice: 22500,
+        recommendReason: "48%的回头客都在买"
+      },
+      {
+        itemId: 883487093,
+        itemName: "精致的星空耳环",
+        itemMainPic:
+          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
+        itemPrice: 17900,
+        itemOriginalPrice: 22500,
+        recommendReason: "48%的回头客都在买"
+      },
+      {
+        itemId: 883487093,
+        itemName: "精致的星空耳环",
+        itemMainPic:
+          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
+        itemPrice: 17900,
+        itemOriginalPrice: 22500,
+        recommendReason: "48%的回头客都在买"
+      }
+    ]
+  }
 });
 
 let userParams = userModel.traverse({

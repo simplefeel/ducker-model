@@ -7,9 +7,11 @@
 > Data converter, decoupling front and rear development, improving development efficiency 数据转换器，解耦前后端开发，提升开发效率
 
 ## Motivation
-✅ why we need ducker-model ? see the [article](https://mp.weixin.qq.com/s/q6xybux0fhrUz5HE5TY0aA) 
+
+✅ why we need ducker-model ? see the [article](https://mp.weixin.qq.com/s/q6xybux0fhrUz5HE5TY0aA)
 
 ## Install
+
 [![NPM](https://nodei.co/npm/ducker-model.png)](https://nodei.co/npm/ducker-model/)
 
 ## Usage
@@ -71,6 +73,24 @@ let userParams = userModel.traverse({
 });
 // userParams--> {"uuid":234,"buyer":{"shopinfo":{"nickname":"李四"}},"lastLoginTime":1563897600000,"price":2400}
 ```
+
+## API 说明
+
+1. **type** 为**Date**的属性，增加 **format** 字段，支持多种内置数据格式
+
+   - "l": "YYYY-MM-DD",
+   - "ll": "YYYY 年 MM 月 DD 日",
+   - "k": "YYYY-MM-DD hh:mm",
+   - "kk": "YYYY 年 MM 月 DD 日 hh 点 mm 分",
+   - "kkk": "YYYY 年 MM 月 DD 日 hh 点 mm 分 q",
+   - "f": "YYYY-MM-DD hh:mm:ss",
+   - "ff": "YYYY 年 MM 月 DD 日 hh 点 mm 分 ss 秒",
+   - "fff": "YYYY 年 MM 月 DD 日 hh 点 mm 分 ss 秒 星期 w",
+   - "n": "MM-DD",
+   - "nn": "MM 月 DD 日",
+
+2. 属性定义增加 **computed** ，值为函数，可以用来自定义格式化数据类型或者处理由多个路径传入的值得计算
+3. **property**，值可以为一个数组，传入多个路径，此时可以通过定义 **computed** 方法来组合计算值
 
 ## Author
 
