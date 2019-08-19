@@ -22,29 +22,40 @@ let userModel = new Model({
   id: {
     type: Number,
     property: "uuid",
-    value: 0
+    value: 0,
+    computed: function(value) {
+      return value * 10;
+    }
   },
   name: {
     type: String,
     property: "buyer.shopinfo.nickname",
     value: ""
   },
-  items: {
-    type: String,
-    property: "items"
-  },
-  age: {
-    type: Number,
-    property: "age"
-  },
   lastLoginTime: {
     type: Date,
-    property: "lastLoginTime"
+    property: "lastLoginTime",
+    format: "kk"
   },
   price: {
     type: Number,
     unit: "B",
     property: "price"
+  },
+  items: {
+    type: Array,
+    property: "shopInfo.familiarItems"
+  },
+  flag: {
+    type: Number,
+    property: ["uuid", "price"],
+    computed: function(args) {
+      let result = 0;
+      for (let i = 0; i < args.length; i++) {
+        result += args[i];
+      }
+      return result;
+    }
   }
 });
 
@@ -59,7 +70,7 @@ let userState = userModel.parse({
   price: 1000,
   lastLoginTime: "1563897600000"
 });
-// userState--> {"id":123,"name":"张三","items":"","age":0,"lastLoginTime":"2019-07-24","price":10}
+// userState--> "_attributes":{"id":1230,"name":"张三","lastLoginTime":"2019年07月24日 00点00分","price":"10.00","items":[{"itemId":883487093,"itemName":"精致的星空耳环","itemMainPic":"https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984","itemPrice":17900,"itemOriginalPrice":22500,"recommendReason":"48%的回头客都在买"}],"flag":1123}
 
 // --------或者----------
 
@@ -102,6 +113,3 @@ let userParams = userModel.traverse({
 
 Give a ⭐️ if this project helped you!
 
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
