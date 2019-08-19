@@ -24,10 +24,6 @@ let userModel = new Model({
     unit: "B",
     property: "price"
   },
-  items: {
-    type: Array,
-    property: "shopInfo.familiarItems"
-  },
   flag: {
     type: Number,
     property: ["uuid", "price"],
@@ -52,33 +48,6 @@ let userState = userModel.parse({
   lastLoginTime: "1563897600000",
   shopInfo: {
     familiarItems: [
-      {
-        itemId: 883487093,
-        itemName: "精致的星空耳环",
-        itemMainPic:
-          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
-        itemPrice: 17900,
-        itemOriginalPrice: 22500,
-        recommendReason: "48%的回头客都在买"
-      },
-      {
-        itemId: 883487093,
-        itemName: "精致的星空耳环",
-        itemMainPic:
-          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
-        itemPrice: 17900,
-        itemOriginalPrice: 22500,
-        recommendReason: "48%的回头客都在买"
-      },
-      {
-        itemId: 883487093,
-        itemName: "精致的星空耳环",
-        itemMainPic:
-          "https://si.geilicdn.com/vshop1023602513-1477718242.jpg?w=984&h=984",
-        itemPrice: 17900,
-        itemOriginalPrice: 22500,
-        recommendReason: "48%的回头客都在买"
-      },
       {
         itemId: 883487093,
         itemName: "精致的星空耳环",
