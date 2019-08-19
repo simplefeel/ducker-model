@@ -4,7 +4,10 @@ let userModel = new Model({
   id: {
     type: Number,
     property: "uuid",
-    value: 0
+    value: 0,
+    computed: function(value) {
+      return value * 10;
+    }
   },
   name: {
     type: String,
@@ -26,10 +29,15 @@ let userModel = new Model({
     property: "shopInfo.familiarItems"
   },
   flag: {
-    type: String,
-    value: false,
-    property: ["path-1", "path-2"],
-    computed: function() {}
+    type: Number,
+    property: ["uuid", "price"],
+    computed: function(args) {
+      let result = 0;
+      for (let i = 0; i < args.length; i++) {
+        result += args[i];
+      }
+      return result;
+    }
   }
 });
 

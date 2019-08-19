@@ -42,15 +42,17 @@ class Model {
       let path = attribute.property,
         type = new attribute.type(),
         format = attribute.format,
+        computed = attribute.computed,
         unit = attribute.unit;
-      let distValue = _get(data, path);
+      let distValue = this._get({ data, path, computed });
       if (distValue) {
-        distValue = this.compose(
+        distValue = this.compose({
           distValue,
           type,
           unit,
-          format
-        );
+          format,
+          computed
+        });
       }
       let value =
         distValue || this.getDefaultValue(attribute.value, attribute.type);
@@ -72,7 +74,7 @@ class Model {
         format = attribute.format,
         sourceValue = data[key];
       if (sourceValue) {
-        let value = this.discompose(sourceValue, unit, key, type);
+        let value = this.discompose({ sourceValue, unit, key, type });
         _set(object, path, value);
       }
     });
@@ -84,12 +86,15 @@ class Model {
    * @param {*} type 类型，比如String,Number
    * @param {*} unit 单位，比如价格
    */
-  compose(distValue, type, unit, format = "l") {
+  compose({ distValue, type, unit, format = "l", computed }) {
     if (unit) {
-      distValue = distValue / PRICE[unit];
+      distValue = Number.parseFloat(distValue / PRICE[unit]).toFixed(2);
     }
     if (_isDate(type)) {
       distValue = _manba(parseFloat(distValue)).format(format);
+    }
+    if (computed) {
+      distValue = computed(distValue);
     }
     return distValue;
   }
@@ -100,7 +105,7 @@ class Model {
    * @param {*} key
    * @param {*} type
    */
-  discompose(sourceValue, unit, key, type) {
+  discompose({ sourceValue, unit, key, type }) {
     if (_isDate(type)) {
       sourceValue = _manba(sourceValue).time();
     }
@@ -125,6 +130,26 @@ class Model {
    */
   get(key, value) {
     return this[key];
+  }
+  /**
+   * 根据路径获取object里面对应的值
+   * @param {*}
+   */
+  _get({ data, path, computed }) {
+    if (_isArray(path) && !computed) {
+      console.error("path定义为数组路径，computed属性必须定义");
+      return;
+    }
+    if (_isArray(path) && computed) {
+      let array = [];
+      path.forEach((o, i) => {
+        array.push(_get(data, o));
+      });
+      return array;
+    }
+    if (!_isArray(path)) {
+      return _get(data, path);
+    }
   }
   /**
    * 获取默认值
