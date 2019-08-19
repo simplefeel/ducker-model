@@ -4,7 +4,7 @@
   <img src="https://badgen.net/badgesize/normal/https://raw.githubusercontent.com/simplefeel/ducker-model/master/dist/ducker.es5.js">
 </p>
 
-> Data converter, decoupling front and rear development, improving development efficiency 数据转换器，解耦前后端开发，提升开发效率
+> 数据转换器，解耦前后端开发，提升开发效率
 
 ## Motivation
 
