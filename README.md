@@ -4,7 +4,7 @@
   <img src="https://badgen.net/badgesize/normal/https://raw.githubusercontent.com/simplefeel/ducker-model/master/dist/ducker.es5.js">
 </p>
 
-> Data converter, decoupling front and rear development, improving development efficiency 数据转换器，解耦前后端开发，提升开发效率
+> 数据转换器，解耦前后端开发，提升开发效率
 
 ## Motivation
 
@@ -22,29 +22,36 @@ let userModel = new Model({
   id: {
     type: Number,
     property: "uuid",
-    value: 0
+    value: 0,
+    computed: function(value) {
+      return value * 10;
+    }
   },
   name: {
     type: String,
     property: "buyer.shopinfo.nickname",
     value: ""
   },
-  items: {
-    type: String,
-    property: "items"
-  },
-  age: {
-    type: Number,
-    property: "age"
-  },
   lastLoginTime: {
     type: Date,
-    property: "lastLoginTime"
+    property: "lastLoginTime",
+    format: "kk"
   },
   price: {
     type: Number,
     unit: "B",
     property: "price"
+  },
+  flag: {
+    type: Number,
+    property: ["uuid", "price"],
+    computed: function(args) {
+      let result = 0;
+      for (let i = 0; i < args.length; i++) {
+        result += args[i];
+      }
+      return result;
+    }
   }
 });
 
@@ -59,7 +66,7 @@ let userState = userModel.parse({
   price: 1000,
   lastLoginTime: "1563897600000"
 });
-// userState--> {"id":123,"name":"张三","items":"","age":0,"lastLoginTime":"2019-07-24","price":10}
+// userState--> {"id":1230,"name":"张三","lastLoginTime":"2019年07月24日 00点00分","price":"10.00","flag":1123}
 
 // --------或者----------
 
@@ -76,7 +83,7 @@ let userParams = userModel.traverse({
 
 ## API 说明
 
-1. **type** 为**Date**的属性，增加 **format** 字段，支持多种内置数据格式
+1. **type**为**Date**的属性，增加**format**字段，支持多种内置数据格式，默认为"l",可以选择的格式如下：
 
    - "l": "YYYY-MM-DD",
    - "ll": "YYYY 年 MM 月 DD 日",
@@ -87,10 +94,13 @@ let userParams = userModel.traverse({
    - "ff": "YYYY 年 MM 月 DD 日 hh 点 mm 分 ss 秒",
    - "fff": "YYYY 年 MM 月 DD 日 hh 点 mm 分 ss 秒 星期 w",
    - "n": "MM-DD",
-   - "nn": "MM 月 DD 日",
+   - "nn": "MM 月 DD 日"
+   
+2. 添加了**unit**字段的，代表该属性值表示一个价格，模型内置**十、百、千、万**单位，可以快捷的将价格字段进行转换，例如1000 -> 100
 
-2. 【未开发】属性定义增加 **computed** ，值为函数，可以用来自定义格式化数据类型或者处理由多个路径传入的值得计算
-3. 【未开发】**property**，值可以为一个数组，传入多个路径，此时可以通过定义 **computed** 方法来组合计算值
+3. 属性定义增加**computed**，值为函数，可以用来自定义数据格式化处理
+
+4. **property**，值可以为一个数组，传入多个路径，此时可以通过定义 **computed** 方法来组合计算值
 
 ## Author
 
@@ -102,6 +112,3 @@ let userParams = userModel.traverse({
 
 Give a ⭐️ if this project helped you!
 
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
