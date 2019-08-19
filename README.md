@@ -83,7 +83,7 @@ let userParams = userModel.traverse({
 
 ## API 说明
 
-1. **type** 为**Date**的属性，增加 **format** 字段，支持多种内置数据格式
+1. **type**为**Date**的属性，增加**format**字段，支持多种内置数据格式，默认为"l",可以选择的格式如下：
 
    - "l": "YYYY-MM-DD",
    - "ll": "YYYY 年 MM 月 DD 日",
@@ -94,10 +94,11 @@ let userParams = userModel.traverse({
    - "ff": "YYYY 年 MM 月 DD 日 hh 点 mm 分 ss 秒",
    - "fff": "YYYY 年 MM 月 DD 日 hh 点 mm 分 ss 秒 星期 w",
    - "n": "MM-DD",
-   - "nn": "MM 月 DD 日",
+   - "nn": "MM 月 DD 日"
+   
 2. 添加了**unit**字段的，代表该属性值表示一个价格，模型内置**十、百、千、万**单位，可以快捷的将价格字段进行转换，例如1000 -> 100
 
-3. 属性定义增加 **computed** ，值为函数，可以用来自定义格式化数据类型或者处理由多个路径传入的值得计算
+3. 属性定义增加**computed**，值为函数，可以用来自定义数据格式化处理
 
 4. **property**，值可以为一个数组，传入多个路径，此时可以通过定义 **computed** 方法来组合计算值
 
