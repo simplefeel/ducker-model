@@ -49,7 +49,7 @@ const property = {
 }
 // 2.定义replacedKeyFromPropertyName
 const replacedKeyFromPropertyName = {
-  	id: {
+	id: {
         property: "uuid",
         defaultValue: '100',
     },
