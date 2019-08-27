@@ -45,13 +45,13 @@ import Model from 'ducker-model'
 const property = {
     id: String,
     name: String,
-	avatar: String,
-	info: {
-		sex: Number,
-		real: {
-			real_name: String
-		},
-	},
+    avatar: String,
+    info: {
+        sex: Number,
+        real: {
+            real_name: String
+        },
+    },
 }
 // 2.定义replacedKeyFromPropertyName
 const replacedKeyFromPropertyName = {
