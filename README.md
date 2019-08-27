@@ -43,7 +43,7 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 import Model, { valueForPath, valueWithArray, valueForPathWithArray } from 'ducker-model'
 // 1.定义property
 const property = {
-    id: String,
+	id: String,
 	name: String,
 	avatar: String,
 }
@@ -62,7 +62,7 @@ const replacedKeyFromPropertyName = {
     },
 }
 // 3.实例化model
-const instanceModel = new Model(property)
+const instanceModel = new Model(property,replacedKeyFromPropertyName)
 // 4.定义数据源
 const dataSource = {
     uuid: 123,
