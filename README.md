@@ -171,6 +171,80 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 // modelData--> {"data":[{"time":"1231512313","to":"troila"}],"source":["1","2","3"],"object":[{ "a": 1 }, { "b": 2 }]}
 ```
 
+## Usage ValueForPathWithArray
+
+```js
+import Model, { valueForPathWithArray } from 'ducker-model'
+// 1.定义property
+const property = {
+    test: valueForPathWithArray(Number, "testDataSource"),
+}
+// 3.实例化model
+const instanceModel = new Model(property)
+// 4.定义数据源
+const dataSource = {
+    testDataSource: [4, 5, 6],
+}
+// 5.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"test":[4,5,6]}
+```
+
+## Usage Object & ValueWithArray & ValueWithArray
+
+```js
+import Model, { valueWithArray } from 'ducker-model'
+// 1.定义property
+const property = {
+    lastTest: valueWithArray({
+        title: String,
+        data: valueWithArray({
+            price: Number,
+            content: String
+        })
+    }),
+}
+// 2.定义replacedKeyFromPropertyName
+const replacedKeyFromPropertyName = {
+    lastTest: {
+        property: "order",
+        children: {
+            title: {
+                property: "title"
+            },
+            data: {
+                property: "dataSource",
+                children: {
+                    price: {
+                        property: "Price",
+                    },
+                    content: {
+                        property: "mrk",
+                    },
+                }
+            }
+        },
+    }
+}
+// 3.实例化model
+const instanceModel = new Model(property,replacedKeyFromPropertyName)
+// 4.定义数据源
+const dataSource = {
+    order: [{
+        title: 'order-1',
+        dataSource: [{
+            Price: 100,
+            mrk: '这是订单1'
+        }, {
+            Price: 200,
+            mrk: '这是订单2'
+        }]
+    }]
+}
+// 5.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"lastTest":[{"title":"order-1",data:[{"price":100,"content":"这是订单1"},{"price":200,"content":"这是订单2"}]}]}
+```
 
 ## API 说明
 
