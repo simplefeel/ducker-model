@@ -246,6 +246,21 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 // modelData--> {"lastTest":[{"title":"order-1",data:[{"price":100,"content":"这是订单1"},{"price":200,"content":"这是订单2"}]}]}
 ```
 
+## Instance Model Method
+
+- objectWithKeyValues
+	- params: Object
+	- return: Object
+	```js
+	const modelData = instanceModel.objectWithKeyValues(dataSource)
+	```
+- objectArrayWithKeyValuesArray
+	- params: Array
+	- return: Array
+	```js
+	const modelData = instanceModel.objectWithKeyValues([dataSource,dataSource,dataSource])
+	```
+
 ## API 说明
 
 1. **type**为**Date**的属性，增加**format**字段，支持多种内置数据格式，默认为"l",可以选择的格式如下：
