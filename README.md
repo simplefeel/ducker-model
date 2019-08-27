@@ -14,72 +14,252 @@
 
 [![NPM](https://nodei.co/npm/ducker-model.png)](https://nodei.co/npm/ducker-model/)
 
-## Usage
+## Base Usage
 
 ```js
-// 1.初始一个model实例，传入数据结构属性定义
-let userModel = new Model({
-  id: {
-    type: Number,
-    property: "uuid",
-    value: 0,
-    computed: function(value) {
-      return value * 10;
-    }
-  },
-  name: {
-    type: String,
-    property: "buyer.shopinfo.nickname",
-    value: ""
-  },
-  lastLoginTime: {
-    type: Date,
-    property: "lastLoginTime",
-    format: "kk"
-  },
-  price: {
-    type: Number,
-    unit: "B",
-    property: "price"
-  },
-  flag: {
-    type: Number,
-    property: ["uuid", "price"],
-    computed: function(args) {
-      let result = 0;
-      for (let i = 0; i < args.length; i++) {
-        result += args[i];
-      }
-      return result;
-    }
-  }
-});
-
-// 2.实例调用parse()方法解析数据
-let userState = userModel.parse({
-  uuid: 123,
-  buyer: {
-    shopinfo: {
-      nickname: "张三"
-    }
-  },
-  price: 1000,
-  lastLoginTime: "1563897600000"
-});
-// userState--> {"id":1230,"name":"张三","lastLoginTime":"2019年07月24日 00点00分","price":"10.00","flag":1123}
-
-// --------或者----------
-
-// 3.实例调用traverse()方法反向映射数据
-let userParams = userModel.traverse({
-  id: 234,
-  name: "李四",
-  age: null,
-  lastLoginTime: "2019-07-24",
-  price: 24
-});
-// userParams--> {"uuid":234,"buyer":{"shopinfo":{"nickname":"李四"}},"lastLoginTime":1563897600000,"price":2400}
+import Model from 'ducker-model'
+// 1.定义property
+const property = {
+    id: String,
+    name: Number,
+    avatar: Object,
+}
+// 2.实例化model
+const instanceModel = new Model(property)
+// 3.定义数据源
+const dataSource = {
+    id: 123,
+    name: 'cuiyuteng',
+    avatar: {uri:'http://xxxx.png'}
+}
+// 4.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"id":123,"name":"cuiyuteng","avatar":{uri:'http://xxxx.png'}}
 ```
+
+## Usage ReplacedKeyFromPropertyName
+
+```js
+import Model from 'ducker-model'
+// 1.定义property
+const property = {
+    id: String,
+    name: String,
+    avatar: String,
+    info: {
+        sex: Number,
+        real: {
+            real_name: String
+        },
+    },
+}
+// 2.定义replacedKeyFromPropertyName
+const replacedKeyFromPropertyName = {
+    id: {
+        property: "uuid",
+        defaultValue: '100',
+    },
+    name: "buyer.shopinfo.nickname",
+    avatar: {
+        property: ["avatar", "file.avatar"],
+        computed: ([a0, a1]) => {
+            return a0 || a1 || ''
+        }
+    },
+    info: {
+        sex: {
+            property: "file.sex",
+        },
+        real: {
+            real_name: {
+                property: "file.real.real_name",
+            }
+        }
+    },
+}
+// 3.实例化model
+const instanceModel = new Model(property,replacedKeyFromPropertyName)
+// 4.定义数据源
+const dataSource = {
+    uuid: 123,
+    buyer: {
+        shopinfo: {
+            nickna22me: "张三"
+        }
+    },
+    avatar: 'http://a.png',
+    file: {
+        avatar: 'http://b.png',
+        sex: 1,
+        real: {
+            real_name: 'P'
+        }
+    },
+}
+// 5.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"id":"100","name":"张三","avatar":"http://a.png","info":{"sex":1,"real":{"real_name":"P"}}}
+```
+
+## Usage ValueForPath
+
+```js
+import Model, { valueForPath } from 'ducker-model'
+// 1.定义property
+const property = {
+    uid: valueForPath(Number, "user.id"),
+}
+// 2.实例化model
+const instanceModel = new Model(property)
+// 3.定义数据源
+const dataSource = {
+    user: {
+        id: 123456
+    },
+}
+// 4.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"uid":123456}
+```
+
+## Usage ValueWithArray
+
+```js
+import Model, { valueWithArray } from 'ducker-model'
+// 1.定义property
+const property = {
+    data: valueWithArray({
+        time: String,
+        to: Number
+    }),
+    source: valueWithArray(String),
+    object: valueWithArray(Object),
+}
+// 2.定义replacedKeyFromPropertyName
+const replacedKeyFromPropertyName = {
+    data: {
+        property: "data",
+        children: {
+            time: {
+                property: "time",
+            },
+            to: {
+                property: "to",
+            },
+        }
+    },
+    source: {
+        property: "datasource",
+    },
+    object: {
+        property: "objectDataSource",
+    },
+}
+// 3.实例化model
+const instanceModel = new Model(property,replacedKeyFromPropertyName)
+// 4.定义数据源
+const dataSource = {
+    data: [{
+        time: '1231512313',
+        to: 'troila'
+    }],
+    datasource: ['1', '2', '3'],
+    objectDataSource: [{ a: 1 }, { b: 2 }],
+}
+// 5.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"data":[{"time":"1231512313","to":"troila"}],"source":["1","2","3"],"object":[{ "a": 1 }, { "b": 2 }]}
+```
+
+## Usage ValueForPathWithArray
+
+```js
+import Model, { valueForPathWithArray } from 'ducker-model'
+// 1.定义property
+const property = {
+    test: valueForPathWithArray(Number, "testDataSource"),
+}
+// 3.实例化model
+const instanceModel = new Model(property)
+// 4.定义数据源
+const dataSource = {
+    testDataSource: [4, 5, 6],
+}
+// 5.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"test":[4,5,6]}
+```
+
+## Usage Object & ValueWithArray & ValueWithArray
+
+```js
+import Model, { valueWithArray } from 'ducker-model'
+// 1.定义property
+const property = {
+    lastTest: valueWithArray({
+        title: String,
+        data: valueWithArray({
+            price: Number,
+            content: String
+        })
+    }),
+}
+// 2.定义replacedKeyFromPropertyName
+const replacedKeyFromPropertyName = {
+    lastTest: {
+        property: "order",
+        children: {
+            title: {
+                property: "title"
+            },
+            data: {
+                property: "dataSource",
+                children: {
+                    price: {
+                        property: "Price",
+                    },
+                    content: {
+                        property: "mrk",
+                    },
+                }
+            }
+        },
+    }
+}
+// 3.实例化model
+const instanceModel = new Model(property,replacedKeyFromPropertyName)
+// 4.定义数据源
+const dataSource = {
+    order: [{
+        title: 'order-1',
+        dataSource: [{
+            Price: 100,
+            mrk: '这是订单1'
+        }, {
+            Price: 200,
+            mrk: '这是订单2'
+        }]
+    }]
+}
+// 5.调用objectWithKeyValues方法解析数据
+const modelData = instanceModel.objectWithKeyValues(dataSource)
+// modelData--> {"lastTest":[{"title":"order-1",data:[{"price":100,"content":"这是订单1"},{"price":200,"content":"这是订单2"}]}]}
+```
+
+## Instance Model Method
+
+- ```objectWithKeyValues```
+	- params: Object
+	- return: Object
+	```js
+	const modelData = instanceModel.objectWithKeyValues(dataSource)
+	```
+- ```objectArrayWithKeyValuesArray```
+	- params: Array
+	- return: Array
+	```js
+	const modelData = instanceModel.objectWithKeyValues([dataSource,dataSource,dataSource])
+	```
 
 ## API 说明
 
