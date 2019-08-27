@@ -43,23 +43,23 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 import Model, { valueForPath, valueWithArray, valueForPathWithArray } from 'ducker-model'
 // 1.定义property
 const property = {
-	id: String,
-	name: String,
-	avatar: String,
+    id: String,
+    name: String,
+    avatar: String,
 }
 // 2.定义replacedKeyFromPropertyName
 const replacedKeyFromPropertyName = {
-	id: {
-		property: "uuid",
-		defaultValue: '100',
-	},
-	name: "buyer.shopinfo.nickname",
-	avatar: {
-		property: ["avatar", "file.avatar"],
-		computed: ([a0, a1]) => {
-			return a0 || a1 || ''
-		}
-	},
+    id: {
+        property: "uuid",
+        defaultValue: '100',
+    },
+    name: "buyer.shopinfo.nickname",
+    avatar: {
+        property: ["avatar", "file.avatar"],
+        computed: ([a0, a1]) => {
+            return a0 || a1 || ''
+        }
+    },
 }
 // 3.实例化model
 const instanceModel = new Model(property,replacedKeyFromPropertyName)
