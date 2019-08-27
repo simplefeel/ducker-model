@@ -1,8 +1,8 @@
 <h1 align="center">Welcome to ducker 👋</h1>
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <p>
   <img src="https://img.shields.io/badge/version-1.2.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://badgen.net/badgesize/normal/https://raw.githubusercontent.com/simplefeel/ducker-model/master/dist/ducker.es5.js">
+  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-">
 </p>
 
 > 数据转换器，解耦前后端开发，提升开发效率
