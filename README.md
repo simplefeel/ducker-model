@@ -248,13 +248,13 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 
 ## Instance Model Method
 
-- objectWithKeyValues
+- ```objectWithKeyValues```
 	- params: Object
 	- return: Object
 	```js
 	const modelData = instanceModel.objectWithKeyValues(dataSource)
 	```
-- objectArrayWithKeyValuesArray
+- ```objectArrayWithKeyValuesArray```
 	- params: Array
 	- return: Array
 	```js
