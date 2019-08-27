@@ -65,17 +65,17 @@ const replacedKeyFromPropertyName = {
         computed: ([a0, a1]) => {
             return a0 || a1 || ''
         }
-	},
-	info: {
-		sex: {
-			property: "file.sex",
-		},
-		real: {
-			real_name: {
-				property: "file.real.real_name",
-			}
-		}
-	},
+    },
+    info: {
+        sex: {
+            property: "file.sex",
+        },
+        real: {
+            real_name: {
+                property: "file.real.real_name",
+            }
+        }
+    },
 }
 // 3.实例化model
 const instanceModel = new Model(property,replacedKeyFromPropertyName)
@@ -89,8 +89,8 @@ const dataSource = {
     },
     avatar: 'http://a.png',
     file: {
-		avatar: 'http://b.png',
-		sex: 1,
+        avatar: 'http://b.png',
+        sex: 1,
         real: {
             real_name: 'P'
         }
@@ -107,7 +107,7 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 import Model, { valueForPath } from 'ducker-model'
 // 1.定义property
 const property = {
-	uid: valueForPath(Number, "user.id"),
+    uid: valueForPath(Number, "user.id"),
 }
 // 2.实例化model
 const instanceModel = new Model(property)
@@ -132,8 +132,8 @@ const property = {
         time: String,
         to: Number
     }),
-	source: valueWithArray(String),
-	object: valueWithArray(Object),
+    source: valueWithArray(String),
+    object: valueWithArray(Object),
 }
 // 2.定义replacedKeyFromPropertyName
 const replacedKeyFromPropertyName = {
@@ -163,8 +163,8 @@ const dataSource = {
         time: '1231512313',
         to: 'troila'
     }],
-	datasource: ['1', '2', '3'],
-	objectDataSource: [{ a: 1 }, { b: 2 }],
+    datasource: ['1', '2', '3'],
+    objectDataSource: [{ a: 1 }, { b: 2 }],
 }
 // 5.调用objectWithKeyValues方法解析数据
 const modelData = instanceModel.objectWithKeyValues(dataSource)
