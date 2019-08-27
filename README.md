@@ -262,7 +262,7 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 	const modelData = instanceModel.objectWithKeyValues([dataSource,dataSource,dataSource])
 	```
 
-## API 说明
+## TIPS
 
 1. **type**为**Date**的属性，增加**format**字段，支持多种内置数据格式，默认为"l",可以选择的格式如下：
 
