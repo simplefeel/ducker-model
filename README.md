@@ -1,8 +1,8 @@
 <h1 align="center">Welcome to ducker 👋</h1>
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <p>
   <img src="https://img.shields.io/badge/version-1.2.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://badgen.net/badgesize/normal/https://raw.githubusercontent.com/simplefeel/ducker-model/master/dist/ducker.es5.js">
+  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square">
 </p>
 
 > 数据转换器，解耦前后端开发，提升开发效率
@@ -262,7 +262,7 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 	const modelData = instanceModel.objectWithKeyValues([dataSource,dataSource,dataSource])
 	```
 
-## API 说明
+## TIPS
 
 1. **type**为**Date**的属性，增加**format**字段，支持多种内置数据格式，默认为"l",可以选择的格式如下：
 
