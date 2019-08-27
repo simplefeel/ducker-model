@@ -50,14 +50,14 @@ const property = {
 // 2.定义replacedKeyFromPropertyName
 const replacedKeyFromPropertyName = {
 	id: {
-    property: "uuid",
-    defaultValue: '100',
-  },
-  name: "buyer.shopinfo.nickname",
+		property: "uuid",
+		defaultValue: '100',
+	},
+	name: "buyer.shopinfo.nickname",
 	avatar: {
 		property: ["avatar", "file.avatar"],
 		computed: ([a0, a1]) => {
-				return a0 || a1 || ''
+			return a0 || a1 || ''
 		}
 	},
 }
