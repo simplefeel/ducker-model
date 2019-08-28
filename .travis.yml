@@ -8,5 +8,8 @@ cache:
 
 script:
   - npm install
+  - npm install -g codecov
   - yarn build:es5
   - yarn test
+  - istanbul cover ./node_modules/jasmine/bin/jasmine.js
+  - codecov
