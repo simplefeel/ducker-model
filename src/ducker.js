@@ -10,7 +10,7 @@ import _set from "lodash/set";
 import _get from "lodash/get";
 import _isNumber from "lodash/isNumber";
 import _isString from "lodash/isString";
-import __isArray from "lodash/_isArray";
+import __isArray from "lodash/isArray";
 import _isDate from "lodash/isDate";
 import _isBoolean from "lodash/isBoolean";
 import _isPlainObject from "lodash/isPlainObject";
@@ -74,25 +74,26 @@ class Model {
       const replacedValue = this.replacedKeyFromPropertyName[key]
 
       if (_isPlainObject(attributeType)) {
-        const {
-          _modelTypeKey
-        } = attributeType
+        const {_modelTypeKey} = attributeType
         if (_modelTypeKey) {
           switch (_modelTypeKey) {
-            case 'valueForPath': {
-              type = new attributeType.type()
-              path = attributeType.path
-              break;
-            }
-            case 'valueWithArray': {
-              type = new Array()
-              break;
-            }
-            case 'valueForPathWithArray': {
-              type = new Array()
-              path = attributeType.path
-              break;
-            }
+            case 'valueForPath':
+              {
+                type = new attributeType.type()
+                path = attributeType.path
+                break;
+              }
+            case 'valueWithArray':
+              {
+                type = new Array()
+                break;
+              }
+            case 'valueForPathWithArray':
+              {
+                type = new Array()
+                path = attributeType.path
+                break;
+              }
             default:
               this.error(`modelTypeKey: [${key}] type error`);
               break;
@@ -124,11 +125,7 @@ class Model {
         this.error(`property: [${key}] type error`)
       }
 
-      const distValue = this._get({
-        data,
-        path,
-        computed
-      })
+      const distValue = this._get({data, path, computed})
       const distValueTypeToString = Object
         .prototype
         .toString
@@ -141,13 +138,7 @@ class Model {
       let lastValue
 
       if (distValueTypeToString === attrTypeToString || __isArray(path)) {
-        lastValue = this.compose({
-          distValue,
-          type,
-          unit,
-          format,
-          computed
-        })
+        lastValue = this.compose({distValue, type, unit, format, computed})
       } else {
         lastValue = this.getDefaultValue(defaultValue, type)
       }
@@ -156,20 +147,14 @@ class Model {
         if (_isPlainObject(attributeType.type)) {
           return new Model(attributeType.type, replacedValue.children).objectArrayWithKeyValuesArray(lastValue)
         } else {
-          return this.checkNoObjectChildren({
-            type: attributeType.type,
-            data: lastValue
-          })
+          return this.checkNoObjectChildren({type: attributeType.type, data: lastValue})
         }
       } else {
         return lastValue
       }
     })
   }
-  checkNoObjectChildren({
-    type,
-    data
-  }) {
+  checkNoObjectChildren({type, data}) {
     return data.map((item) => {
       const instanceType = new type
       const expectTypeToString = Object
@@ -192,7 +177,7 @@ class Model {
    * @param {*} data 需要转化的数据
    */
   traverse(data = {}) {
-    if (!data)
+    if (!data) 
       return this;
     let object = {};
     _mapValues(this._attributes, (attribute, key) => {
@@ -202,12 +187,7 @@ class Model {
         format = attribute.format,
         sourceValue = data[key];
       if (sourceValue) {
-        let value = this.discompose({
-          sourceValue,
-          unit,
-          key,
-          type
-        });
+        let value = this.discompose({sourceValue, unit, key, type});
         _set(object, path, value);
       }
     });
@@ -246,12 +226,7 @@ class Model {
    * @param {*} key
    * @param {*} type
    */
-  discompose({
-    sourceValue,
-    unit,
-    key,
-    type
-  }) {
+  discompose({sourceValue, unit, key, type}) {
     if (_isDate(type)) {
       sourceValue = _manba(sourceValue).time();
     }
@@ -281,11 +256,7 @@ class Model {
    * 根据路径获取object里面对应的值
    * @param {*}
    */
-  _get({
-    data,
-    path,
-    computed
-  }) {
+  _get({data, path, computed}) {
     if (__isArray(path) && !computed) {
       return this.error("path定义为数组路径，computed属性必须定义");
     }
@@ -341,32 +312,17 @@ class Model {
 }
 
 const valueForPath = (type, path) => {
-  return {
-    _modelTypeKey: 'valueForPath',
-    type,
-    path
-  }
+  return {_modelTypeKey: 'valueForPath', type, path}
 }
 
 const valueWithArray = (type) => {
-  return {
-    _modelTypeKey: 'valueWithArray',
-    type
-  }
+  return {_modelTypeKey: 'valueWithArray', type}
 }
 
 const valueForPathWithArray = (type, path) => {
-  return {
-    _modelTypeKey: 'valueForPathWithArray',
-    type,
-    path
-  }
+  return {_modelTypeKey: 'valueForPathWithArray', type, path}
 }
 
-export {
-  valueForPath,
-  valueWithArray,
-  valueForPathWithArray
-}
+export {valueForPath, valueWithArray, valueForPathWithArray}
 
 export default Model;
