@@ -258,7 +258,7 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 	- params: Array
 	- return: Array
 	```js
-	const modelData = instanceModel.objectWithKeyValues([dataSource,dataSource,dataSource])
+	const modelData = instanceModel.objectArrayWithKeyValuesArray([dataSource,dataSource,dataSource])
 	```
 
 ## API 说明
