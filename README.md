@@ -35,7 +35,7 @@ const dataSource = {
 }
 // 4.调用objectWithKeyValues方法解析数据
 const modelData = instanceModel.objectWithKeyValues(dataSource)
-// modelData--> {"id":123,"name":"cuiyuteng","avatar":{uri:'http://xxxx.png'}}
+// modelData--> {"id":"","name":0,"avatar":{uri:'http://xxxx.png'}}
 ```
 
 ## Usage ReplacedKeyFromPropertyName
