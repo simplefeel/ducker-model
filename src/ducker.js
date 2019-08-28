@@ -273,6 +273,7 @@ class Model {
 	 * @param {*} Type
 	 */
 	setDefaultValue(type) {
+		let value
 		if (_isNumber(type)) {
 			value = 0;
 		} else if (_isString(type)) {
@@ -286,6 +287,8 @@ class Model {
 		} else if (isPlainObject(type)) {
 			value = Date.now();
 		} else if (isNull(type)) {
+			value = null
+		} else {
 			value = null
 		}
 		return value;
