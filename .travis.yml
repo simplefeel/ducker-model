@@ -5,3 +5,7 @@ node_js:
 
 cache:
   yarn: true
+
+script:
+  - yarn build:es5
+  - yarn test
