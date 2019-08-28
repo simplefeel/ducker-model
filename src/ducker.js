@@ -74,7 +74,6 @@ class Model {
         type
 
       const replacedValue = this.replacedKeyFromPropertyName[key]
-
       if (_isPlainObject(attributeType)) {
         const {_modelTypeKey} = attributeType
         if (_modelTypeKey) {
@@ -201,19 +200,13 @@ class Model {
    * @param {*} type 类型，比如String,Number
    * @param {*} unit 单位，比如价格
    */
-  compose({
-    distValue,
-    type,
-    unit,
-    format = "l",
-    computed
-  }) {
+  compose({distValue, type, unit, format, computed}) {
     if (unit) {
       distValue = Number
         .parseFloat(distValue / PRICE[unit])
         .toFixed(2);
     }
-    if (_isDate(type)) {
+    if (format) {
       distValue = _manba(parseFloat(distValue)).format(format);
     }
     if (computed) {

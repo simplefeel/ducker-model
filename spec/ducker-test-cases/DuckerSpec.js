@@ -34,6 +34,7 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
     id: String,
     name: String,
     avatar: String,
+    loginTime: String,
     info: {
       sex: Number,
       real: {
@@ -47,6 +48,10 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
       defaultValue: '100'
     },
     name: "buyer.shopinfo.nickname",
+    loginTime: {
+      property: 'loginTime',
+      format: "kk"
+    },
     avatar: {
       property: [
         "avatar", "file.avatar"
@@ -70,6 +75,7 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
   const instanceModel = new Model(property, replacedKeyFromPropertyName)
   const dataSource = {
     uuid: 123,
+    loginTime: "1566978591904",
     buyer: {
       shopinfo: {
         nickname: "张三"
@@ -90,6 +96,7 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
       "id": "100",
       "name": "张三",
       "avatar": "http://a.png",
+      "loginTime": '2019年08月28日 15点49分',
       "info": {
         "sex": 1,
         "real": {
