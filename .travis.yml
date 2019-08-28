@@ -12,5 +12,5 @@ script:
   - npm install -g istanbul
   - yarn build:es5
   - yarn test
-  - istanbul cover ./node_modules/jasmine/bin/jasmine.js --reporter lcovonly -- -R spec
+  - istanbul cover ./node_modules/jasmine/bin/jasmine.js
   - codecov
