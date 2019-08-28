@@ -51,7 +51,7 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
       property: [
         "avatar", "file.avatar"
       ],
-      computed: ([a0, a1]) => {
+      computed: function ([a0, a1]) {
         return a0 || a1 || ''
       }
     },
