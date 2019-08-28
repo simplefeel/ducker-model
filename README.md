@@ -85,7 +85,7 @@ const dataSource = {
     uuid: 123,
     buyer: {
         shopinfo: {
-            nickna22me: "张三"
+            nickname: "张三"
         }
     },
     avatar: 'http://a.png',
