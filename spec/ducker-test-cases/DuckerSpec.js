@@ -27,6 +27,26 @@ describe("Base Usage", function () {
   })
 });
 
+describe("default fill", function () {
+  const Model = require('../../dist/ducker.es5').default;
+
+  const property = {
+    id: String,
+    name: Number,
+    avatar: Object
+  }
+
+  const instanceModel = new Model(property)
+  const dataSource = {
+    id: 123,
+    name: 'cuiyuteng'
+  }
+
+  it(" the value is expect after parse ", function () {
+    expect(instanceModel.objectWithKeyValues(dataSource)).toEqual({id: '', name: 0, avatar: {}})
+  })
+});
+
 describe("Usage ReplacedKeyFromPropertyName", function () {
   const Model = require('../../dist/ducker.es5').default;
 

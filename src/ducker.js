@@ -72,7 +72,6 @@ class Model {
         unit,
         defaultValue,
         type
-
       const replacedValue = this.replacedKeyFromPropertyName[key]
       if (_isPlainObject(attributeType)) {
         const {_modelTypeKey} = attributeType
@@ -295,7 +294,7 @@ class Model {
     } else if (_isDate(type)) {
       value = Date.now();
     } else if (_isPlainObject(type)) {
-      value = Date.now();
+      value = {};
     } else if (_isNull(type)) {
       value = null
     }
