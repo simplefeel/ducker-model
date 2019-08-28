@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node rollup.js",
     "build:es5": "node rollup.js --es5",
-    "test": "jasmine spec/ducker-test-cases/DuckerSpec.js"
+    "test": "jasmine JASMINE_CONFIG_PATH=spec/ducker-test-cases/DuckerSpec.js"
   },
   "icon": "icon.png",
   "keywords": [],
