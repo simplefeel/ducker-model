@@ -70,7 +70,7 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
     name: "buyer.shopinfo.nickname",
     loginTime: {
       property: 'loginTime',
-      format: "kk"
+      format: "l"
     },
     avatar: {
       property: [
@@ -116,7 +116,7 @@ describe("Usage ReplacedKeyFromPropertyName", function () {
       "id": "100",
       "name": "张三",
       "avatar": "http://a.png",
-      "loginTime": '2019年08月28日 15点49分',
+      "loginTime": '2019-08-28',
       "info": {
         "sex": 1,
         "real": {
