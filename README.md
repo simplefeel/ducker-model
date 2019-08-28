@@ -169,7 +169,7 @@ const dataSource = {
 }
 // 5.调用objectWithKeyValues方法解析数据
 const modelData = instanceModel.objectWithKeyValues(dataSource)
-// modelData--> {"data":[{"time":"1231512313","to":"troila"}],"source":["1","2","3"],"object":[{ "a": 1 }, { "b": 2 }]}
+// modelData--> {"data":[{"time":"1231512313","to":0}],"source":["1","2","3"],"object":[{ "a": 1 }, { "b": 2 }]}
 ```
 
 ## Usage ValueForPathWithArray
