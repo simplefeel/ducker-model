@@ -7,6 +7,5 @@ cache:
   yarn: true
 
 script:
-  - yarn install
   - yarn build:es5
   - yarn test
