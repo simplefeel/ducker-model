@@ -18,8 +18,6 @@ import _isFunction from "lodash/isFunction";
 import _isNull from "lodash/isNull";
 import _manba from "manba";
 
-console.log(_isPlainObject);
-
 /**
  * 格式化价格的单位
  */
