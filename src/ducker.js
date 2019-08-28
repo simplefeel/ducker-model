@@ -10,13 +10,15 @@ import _set from "lodash/set";
 import _get from "lodash/get";
 import _isNumber from "lodash/isNumber";
 import _isString from "lodash/isString";
-import __isArray from "lodash/isArray";
+import _isArray from "lodash/isArray";
 import _isDate from "lodash/isDate";
 import _isBoolean from "lodash/isBoolean";
 import _isPlainObject from "lodash/isPlainObject";
 import _isFunction from "lodash/isFunction";
 import _isNull from "lodash/isNull";
 import _manba from "manba";
+
+console.log(_isPlainObject);
 
 /**
  * 格式化价格的单位
@@ -46,7 +48,7 @@ class Model {
     }
   }
   objectWithKeyValues(e) {
-    if (!__isPlainObject(e)) {
+    if (!_isPlainObject(e)) {
       this.error(`objectWithKeyValues: array dataSource type error`)
     }
     return this.parse(e)
@@ -137,7 +139,7 @@ class Model {
 
       let lastValue
 
-      if (distValueTypeToString === attrTypeToString || __isArray(path)) {
+      if (distValueTypeToString === attrTypeToString || _isArray(path)) {
         lastValue = this.compose({distValue, type, unit, format, computed})
       } else {
         lastValue = this.getDefaultValue(defaultValue, type)
@@ -257,17 +259,17 @@ class Model {
    * @param {*}
    */
   _get({data, path, computed}) {
-    if (__isArray(path) && !computed) {
+    if (_isArray(path) && !computed) {
       return this.error("path定义为数组路径，computed属性必须定义");
     }
-    if (__isArray(path) && computed) {
+    if (_isArray(path) && computed) {
       let array = [];
       path.forEach((o, i) => {
         array.push(_get(data, o));
       });
       return array;
     }
-    if (!__isArray(path)) {
+    if (!_isArray(path)) {
       return _get(data, path);
     }
   }
@@ -293,7 +295,7 @@ class Model {
       value = 0;
     } else if (_isString(type)) {
       value = "";
-    } else if (__isArray(type)) {
+    } else if (_isArray(type)) {
       value = [];
     } else if (_isBoolean(type)) {
       value = true;

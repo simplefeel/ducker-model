@@ -8,5 +8,5 @@ cache:
 
 script:
   - npm install
-  - npm run build:es5
-  - npm test
+  - yarn build:es5
+  - yarn test
