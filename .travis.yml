@@ -4,8 +4,8 @@ node_js:
   - '10'
 
 cache:
-  yarn: true
+  npm: true
 
 script:
-  - yarn build:es5
-  - yarn test
+  - npm build:es5
+  - npm test
