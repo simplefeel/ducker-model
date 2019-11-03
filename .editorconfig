@@ -1,6 +1,12 @@
 root = true
 
 [*]
-indent_style = space
-tab_width = 2
 charset = utf-8
+end_of_line = lf # mac linux/unix 都用lf。 window 设置 cr 在 *nix 有问题
+indent_size = 2
+indent_style = space
+max_line_length = 120
+trim_trailing_whitespace = true
+
+[*.jsx]
+indent_size= 2

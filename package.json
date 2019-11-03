@@ -1,12 +1,14 @@
 {
   "name": "ducker-model",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "description": "",
   "main": "dist/ducker.es5.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "node rollup.js",
-    "build:es5": "node rollup.js --es5"
+    "build": "babel src/ducker.js -d lib",
+    "build:es6": "node rollup.js",
+    "build:es5": "node rollup.js --es5",
+    "test": "jasmine JASMINE_CONFIG_PATH=spec/ducker-test-cases/DuckerSpec.js"
   },
   "icon": "icon.png",
   "keywords": [],
@@ -16,8 +18,10 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "jasmine": "^3.4.0",
     "rollup": "^1.12.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-uglify-es": "0.0.1"
