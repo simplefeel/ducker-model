@@ -110,7 +110,7 @@ class Model {
       } else if (_isString(replacedValue)) {
         path = replacedValue
       } else if (_isPlainObject(replacedValue)) {
-        path = replacedValue.property
+        path = replacedValue.property || key
         format = replacedValue.format
         computed = replacedValue.computed
         unit = replacedValue.unit

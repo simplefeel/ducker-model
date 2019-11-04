@@ -40,10 +40,9 @@ test('ducker model objectWithKeyValues', () => {
     }
     const replacedKeyFromPropertyName = {
         data: {
-            property: "data",
             children: {
                 time: {
-                    property: "time",
+                    property: "time2",
                 },
                 to: {
                     property: "to",
@@ -58,10 +57,10 @@ test('ducker model objectWithKeyValues', () => {
         },
     }
 
-    const instanceModel = new Model(property)
+    const instanceModel = new Model(property, replacedKeyFromPropertyName)
     const dataSource = [{
         data: [{
-            time: '1231512313',
+            time2: '1231512313',
             to: 'troila'
         }],
         datasource: ['1', '2', '3'],
