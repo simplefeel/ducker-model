@@ -8,7 +8,8 @@
     "build": "babel src/ducker.js -d lib",
     "build:es6": "node rollup.js",
     "build:es5": "node rollup.js --es5",
-    "test": "jasmine JASMINE_CONFIG_PATH=spec/ducker-test-cases/DuckerSpec.js"
+    "test": "jasmine JASMINE_CONFIG_PATH=spec/ducker-test-cases/DuckerSpec.js",
+    "jest": "jest"
   },
   "icon": "icon.png",
   "keywords": [],
@@ -22,6 +23,7 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "jasmine": "^3.4.0",
+    "jest": "^24.9.0",
     "rollup": "^1.12.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-uglify-es": "0.0.1"
