@@ -139,7 +139,48 @@ const modelData = instanceModel.objectWithKeyValues(dataSource)
 // modelData--> {"uid":123456}
 ```
 
-## Usage ValueWithArray
+
+## Usage Array & ObjectArrayWithKeyValuesArray
+
+```js
+import Model from 'ducker-model'
+// 1.定义property
+const property = {
+    id: String,
+    name: String,
+    avatar: String,
+}
+// 2.定义replacedKeyFromPropertyName
+const replacedKeyFromPropertyName = {
+    id: {
+        property: "uuid",
+    },
+    name: "buyer.shopinfo.nickname",
+    avatar: {
+        property: "file.url"
+    },
+}
+// 3.实例化model
+const instanceModel = new Model(property,replacedKeyFromPropertyName)
+// 4.定义数据源
+const dataSource = {
+    uuid: '123456',
+    buyer:{
+        shopinfo:{
+            nickname: 'xxx'
+        }
+    },
+    file: {
+        url:'http://xxxx'
+    },
+}
+// 5.调用objectArrayWithKeyValuesArray方法解析数据
+const modelData = instanceModel.objectArrayWithKeyValuesArray([dataSource,dataSource,dataSource])
+// modelData--> [{"id":"123456","name":"xxx","avatar":"http://xxxx"},{"id":"123456","name":"xxx","avatar":"http://xxxx"},{"id":"123456","name":"xxx","avatar":"http://xxxx"}]
+```
+
+
+## Usage Object & ValueWithArray
 
 ```js
 import Model, { valueWithArray } from 'ducker-model'
